@@ -8,7 +8,7 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Twitter Tweets - Display your Tweets on your Wordpress site using the new OAuth API v1.1. Because it works!
+Simple Twitter Tweets - Display your Tweets on your Wordpress site using the new Twitter OAuth API v1.1. Because it works!
 
 == Description ==
 
