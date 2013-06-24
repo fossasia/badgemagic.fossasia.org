@@ -1,18 +1,18 @@
 === Plugin Name ===
 Contributors: Planet Interactive
 Donate: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9437VN7R36VN
-Tags: Twitter, Stream, Tweets, Twitter OAuth
-Requires at least: 3.0 or Higher
+Tags: Twitter, Stream, Tweets, Twitter OAuth, social
+Requires at least: 3.0
 Tested up to: 3.5.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Twitter Tweets - Display your Tweets on your Wordpress site using the new Twitter OAuth API v1.1. Because it works!
+Simple Twitter Tweets - Display your Tweets on your Wordpress site using the new Twitter OAuth API v1.1. (even when you can't connect) Because it's backed up!
 
 == Description ==
 
-A Simple Twitter Tweets display widget, using Twitter OAth and API v1.1
+A Simple Twitter Tweets display widget, using Twitter OAth and API v1.1 and backup up so it always displays your Tweets.
 
 **Why?**
 
@@ -86,9 +86,9 @@ Of course you can. It's really simple too.
 
 The Tweets are in a widget as with all widgets, and are a simple unordered list.
 
-* To make styling easier the <ul> has a class of Tweets - <ul class="tweets">
-* Each Tweet is a list item <li>
-* Each Time reference is an emphasised link <em><a>
+* To make styling easier the &lt;ul&gt; has a class of Tweets - &lt;ul class="tweets"&gt;
+* Each Tweet is a list item &lt;li&gt;
+* Each Time reference is an emphasised link &lt;em&gt;&lt;a&gt;
 * Done.
 
 = Where can I get help =
@@ -100,7 +100,6 @@ As far as we know it just works! Phew, but if you have an issue or you want to p
 
 == Screenshots ==
 
-Setup your Twitter Application
 1. Go to https://dev.twitter.com and Sign In
 2. Top right, hover your name/icon, go to My Application
 3. Create a new Application
@@ -117,8 +116,10 @@ See here [Simple Twitter Tweets](http://www.planet-interactive.co.uk/simple-twit
 
 = 1.0 =
 * Initial release
+= 1.1 =
+* Readme, descriptions and screenshot updates
 
 == Upgrade Notice ==
 
-= 1.0 =
-This is the initial release using the new Twitter OAuth requirement to pull Tweets
+= 1.1 =
+Just some tweaks.
