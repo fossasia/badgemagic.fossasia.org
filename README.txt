@@ -3,8 +3,8 @@ Contributors: Planet Interactive
 Donate: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9437VN7R36VN
 Tags: Twitter, Stream, Tweets, Twitter OAuth, social
 Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 1.1
+Tested up to: 3.5.2
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,8 @@ Fill in your details, copy and past the Twitter Application details (as describe
 * Access Token: Under the *Your access token* heading
 * Access Token Secret: Under the *Your access token* heading
 * Choose if you want the @replies included or not
+* Select Twitter Follow Button to show options
+* Choose to Show the button, Add your Twitter name, Show your follower count and your language (defaults to en [English])
 * Click Save
 
 Enjoy!
@@ -108,18 +110,23 @@ As far as we know it just works! Phew, but if you have an issue or you want to p
 6. If you've already installed in the "Simple Twitter Tweets" plugin go to Appearance->Widgets (otherwise install it first then go here)
 7. Drag the "Simple Twitter Tweets" widget your widget area of choice
 8. Fill in the widget options and correlating Twitter Application OAuth requirements, just copy and paste
-9. Style how you like, "Your Tweets your way"
-
-See here [Simple Twitter Tweets](http://www.planet-interactive.co.uk/simple-twitter-tweets "Simple Twitter Tweets by Planet Interactive")
+9. New options for "Twitter Follow Button" and what elements to display
+10. Style how you like, "Your Tweets your way"
 
 == Changelog ==
 
-= 1.0 =
-* Initial release
+= 1.2 =
+* Added Twitter name reference enabling database backup for multiple account use
+* Added Twitter Follow Button and configuration options
+* Updated screenshots and instructions for new functionality and option settings
+
 = 1.1 =
 * Readme, descriptions and screenshot updates
 
+= 1.0 =
+* Initial release
+
 == Upgrade Notice ==
 
-= 1.1 =
-Just some tweaks.
+= 1.2 =
+Multiple account use enabled, "Twitter Follow Button" added with display options.
