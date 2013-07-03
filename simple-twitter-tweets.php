@@ -80,28 +80,28 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		$dataLang 			= $instance['dataLang'];
 ?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo attribute_escape($title); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>">Title: <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" /></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('name'); ?>">Twitter Name (without @ symbol): <input class="widefat" id="<?php echo $this->get_field_id('name'); ?>" name="<?php echo $this->get_field_name('name'); ?>" type="text" value="<?php echo attribute_escape($name); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('name'); ?>">Twitter Name (without @ symbol): <input class="widefat" id="<?php echo $this->get_field_id('name'); ?>" name="<?php echo $this->get_field_name('name'); ?>" type="text" value="<?php echo esc_attr($name); ?>" /></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('numTweets'); ?>">Number of Tweets: <input class="widefat" id="<?php echo $this->get_field_id('numTweets'); ?>" name="<?php echo $this->get_field_name('numTweets'); ?>" type="text" value="<?php echo attribute_escape($numTweets); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('numTweets'); ?>">Number of Tweets: <input class="widefat" id="<?php echo $this->get_field_id('numTweets'); ?>" name="<?php echo $this->get_field_name('numTweets'); ?>" type="text" value="<?php echo esc_attr($numTweets); ?>" /></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('cacheTime'); ?>">Time in Minutes between updates: <input class="widefat" id="<?php echo $this->get_field_id('cacheTime'); ?>" name="<?php echo $this->get_field_name('cacheTime'); ?>" type="text" value="<?php echo attribute_escape($cacheTime); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('cacheTime'); ?>">Time in Minutes between updates: <input class="widefat" id="<?php echo $this->get_field_id('cacheTime'); ?>" name="<?php echo $this->get_field_name('cacheTime'); ?>" type="text" value="<?php echo esc_attr($cacheTime); ?>" /></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('consumerKey'); ?>">Consumer Key: <input class="widefat" id="<?php echo $this->get_field_id('consumerKey'); ?>" name="<?php echo $this->get_field_name('consumerKey'); ?>" type="text" value="<?php echo attribute_escape($consumerKey); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('consumerKey'); ?>">Consumer Key: <input class="widefat" id="<?php echo $this->get_field_id('consumerKey'); ?>" name="<?php echo $this->get_field_name('consumerKey'); ?>" type="text" value="<?php echo esc_attr($consumerKey); ?>" /></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('consumerSecret'); ?>">Consumer Secret: <input class="widefat" id="<?php echo $this->get_field_id('consumerSecret'); ?>" name="<?php echo $this->get_field_name('consumerSecret'); ?>" type="text" value="<?php echo attribute_escape($consumerSecret); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('consumerSecret'); ?>">Consumer Secret: <input class="widefat" id="<?php echo $this->get_field_id('consumerSecret'); ?>" name="<?php echo $this->get_field_name('consumerSecret'); ?>" type="text" value="<?php echo esc_attr($consumerSecret); ?>" /></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('accessToken'); ?>">Access Token: <input class="widefat" id="<?php echo $this->get_field_id('accessToken'); ?>" name="<?php echo $this->get_field_name('accessToken'); ?>" type="text" value="<?php echo attribute_escape($accessToken); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('accessToken'); ?>">Access Token: <input class="widefat" id="<?php echo $this->get_field_id('accessToken'); ?>" name="<?php echo $this->get_field_name('accessToken'); ?>" type="text" value="<?php echo esc_attr($accessToken); ?>" /></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('accessTokenSecret'); ?>">Access Token Secret: <input class="widefat" id="<?php echo $this->get_field_id('accessTokenSecret'); ?>" name="<?php echo $this->get_field_name('accessTokenSecret'); ?>" type="text" value="<?php echo attribute_escape($accessTokenSecret); ?>" /></label>
+			<label for="<?php echo $this->get_field_id('accessTokenSecret'); ?>">Access Token Secret: <input class="widefat" id="<?php echo $this->get_field_id('accessTokenSecret'); ?>" name="<?php echo $this->get_field_name('accessTokenSecret'); ?>" type="text" value="<?php echo esc_attr($accessTokenSecret); ?>" /></label>
 		</p>
 		<p>  
 		    <input class="checkbox" type="checkbox" <?php checked( isset( $instance['exclude_replies']), true ); ?> id="<?php echo $this->get_field_id( 'exclude_replies' ); ?>" name="<?php echo $this->get_field_name( 'exclude_replies' ); ?>" />   
@@ -124,7 +124,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			    <label for="<?php echo $this->get_field_id( 'dataShowCount' ); ?>"><?php _e('Show Twitter Followers Count', 'pi-tweet'); ?></label>  
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('dataLang'); ?>">Language: <input class="widefat" id="<?php echo $this->get_field_id('dataLang'); ?>" name="<?php echo $this->get_field_name('dataLang'); ?>" type="text" value="<?php echo attribute_escape($dataLang); ?>" /></label>
+				<label for="<?php echo $this->get_field_id('dataLang'); ?>">Language: <input class="widefat" id="<?php echo $this->get_field_id('dataLang'); ?>" name="<?php echo $this->get_field_name('dataLang'); ?>" type="text" value="<?php echo esc_attr($dataLang); ?>" /></label>
 			</p>
 			</div>
 		</div>
@@ -213,6 +213,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			$dataShowScreenName	= ($PI_dataShowScreenName != "true") ? "false" : "true"; // Whether to show Twitter Screen Name
 			$dataLang 			= $PI_dataLang; // Tell Twitter what Language is being used
 
+			// COMMUNITY REQUEST !!!!!! (1)
 			$transName = 'list-tweets-'.$name; // Name of value in database. [added $name for multiple account use]
 			$backupName = $transName . '-backup'; // Name of backup value in database.
 
@@ -257,15 +258,22 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			    
 			    	// Core info.
 			    	$name = $tweet->user->name;
+
+					// COMMUNITY REQUEST !!!!!! (2)
+			    	$screen_name = $tweet->user->screen_name;
+
 			    	$permalink = 'http://twitter.com/'. $name .'/status/'. $tweet->id_str;
 
 			    	/* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
 			    	$image = $tweet->user->profile_image_url;
 
-			    	// Message. Convert links to real links.
-			    	$pattern = '/http:(\S)+/';
-			    	$replace = '<a href="${0}" target="_blank" rel="nofollow">${0}</a>';
-			    	$text = preg_replace($pattern, $replace, $tweet->text);
+					// NEW Link Creation from clickable items in the text
+					$linkCheck = preg_replace('/((http)+(s)?:\/\/[^<>\s]+)/i', '<a href="$0" target="_blank" rel="nofollow">$0</a>', $tweet->text );
+					// Clickable Twitter names
+					$personCheck = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/$1" target="_blank" rel="nofollow">$1</a>', $linkCheck );
+					// Clickable Twitter hash tags
+					$text = preg_replace('/[#]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/search?q=%23$1" target="_blank" rel="nofollow">$0</a>', $personCheck );
+					// END TWEET CONTENT REGEX
 
 			    	// Need to get time in Unix format.
 			    	$time = $tweet->created_at;
@@ -293,7 +301,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			    <?php foreach($tweets as $t) : ?>
 			        <li><?php echo $t['text']; ?>
 			            <br/><em>
-			            <a href="http://www.twitter.com/<?php echo $name; ?>" target="_blank" title="Follow <?php echo $name; ?> on Twitter [Opens new window]"><?php echo human_time_diff($t['time'], current_time('timestamp')); ?> ago</a>
+						<a href="http://www.twitter.com/<?php echo $screen_name; ?>" target="_blank" title="Follow <?php echo $name; ?> on Twitter [Opens new window]"><?php echo human_time_diff($t['time'], current_time('timestamp')); ?> ago</a>
 			            </em>
 			        </li>
 			    <?php endforeach; ?>

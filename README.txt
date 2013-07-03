@@ -115,6 +115,18 @@ As far as we know it just works! Phew, but if you have an issue or you want to p
 
 == Changelog ==
 
+= 1.3 =
+Added
+* Hash Tag linking and ReTweet @names linking
+* Name reference added to hover state attribute for date link Screen Names - better than username reference
+
+Updated
+* Updated depricated functions to ensure future compatibility
+* Rewrote link creation for URLs in tweets
+
+Fixed
+* Fixed screen name reference for Twitter date links
+
 = 1.2 =
 * Added Twitter name reference enabling database backup for multiple account use
 * Added Twitter Follow Button and configuration options
