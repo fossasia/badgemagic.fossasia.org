@@ -270,7 +270,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 					// NEW Link Creation from clickable items in the text
 					$linkCheck = preg_replace('/((http)+(s)?:\/\/[^<>\s]+)/i', '<a href="$0" target="_blank" rel="nofollow">$0</a>', $tweet->text );
 					// Clickable Twitter names
-					$personCheck = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/$1" target="_blank" rel="nofollow">$1</a>', $linkCheck );
+					$personCheck = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/$1" target="_blank" rel="nofollow">@$1</a>', $linkCheck );
 					// Clickable Twitter hash tags
 					$text = preg_replace('/[#]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/search?q=%23$1" target="_blank" rel="nofollow">$0</a>', $personCheck );
 					// END TWEET CONTENT REGEX
