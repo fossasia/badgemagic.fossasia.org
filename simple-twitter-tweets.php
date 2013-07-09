@@ -4,7 +4,7 @@ Plugin Name: Simple Twitter Tweets
 Plugin URI: http://www.planet-interactive.co.uk/simple-twitter-tweets
 Description: Display last x number tweets from Twitter API stream, store locally in dataabse to present past tweets when failure to access Twitters restrictive API occurs
 Author: Ashley Sheinwald
-Version: 1.3.1
+Version: 1.3.2
 Author URI: http://www.planet-interactive.co.uk/
 */
 
@@ -105,7 +105,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		</p>
 		<p>  
 		    <input class="checkbox" type="checkbox" <?php checked( isset( $instance['exclude_replies']), true ); ?> id="<?php echo $this->get_field_id( 'exclude_replies' ); ?>" name="<?php echo $this->get_field_name( 'exclude_replies' ); ?>" />   
-		    <label for="<?php echo $this->get_field_id( 'exclude_replies' ); ?>"><?php _e('Exclude @replies', 'pi-tweet'); ?></label>  
+		    <label for="<?php echo $this->get_field_id( 'exclude_replies' ); ?>"><?php _e('Exclude_@replies', 'pi-tweet'); ?></label>  
 		</p>
 		
 		<div class="twitterFollow" style="background:#d6eef9;">
@@ -195,7 +195,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			 */
 
 			// Configuration.
-			$numTweets 			= $PI_numTweets; 	// Num tweets to show
+			$numTweets 			= $PI_numTweets; 		// Num tweets to show
 			$name 				= $PI_name;				// Twitter UserName
 			$cacheTime 			= $PI_cacheTime; 		// Time in minutes between updates.
 
@@ -206,8 +206,8 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			$accessToken 		= $PI_accessToken;		// OAuth Access Token
 			$accessTokenSecret 	= $PI_accessTokenSecret;// OAuth Token Secret
 
-			$exclude_replies 	= $PI_exclude_replies; // Leave out @replies?
-			$twitterFollow 		= $PI_twitterFollow; // Whether to show Twitter Follow button
+			$exclude_replies 	= $PI_exclude_replies; 	// Leave out @replies?
+			$twitterFollow 		= $PI_twitterFollow; 	// Whether to show Twitter Follow button
 
 			$dataShowCount 		= ($PI_dataShowCount != "true") ? "false" : "true"; // Whether to show Twitter Follower Count
 			$dataShowScreenName	= ($PI_dataShowScreenName != "true") ? "false" : "true"; // Whether to show Twitter Screen Name
@@ -232,14 +232,14 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 
 			// If excluding replies, we need to fetch more than requested as the
 			// total is fetched first, and then replies removed.
-			$totalToFetch = ($excludeReplies) ? max(50, $numTweets * 3) : $numTweets;
+			$totalToFetch = ($exclude_replies) ? max(50, $numTweets * 3) : $numTweets;
 			
 			$fetchedTweets = $connection->get(
 				'statuses/user_timeline',
 				array(
 					'screen_name'     => $name,
 					'count'           => $totalToFetch,
-					'exclude_replies' => $excludeReplies
+					'exclude_replies' => $exclude_replies
 				)
 			);
 			  
