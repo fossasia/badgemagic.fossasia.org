@@ -150,5 +150,5 @@ As far as we know it just works! Phew, but if you have an issue or you want to p
 
 == Upgrade Notice ==
 
-= 1.3.2 =
-Minor update. Exclude replies notice fixed, No. Tweets correct calculation.
+= 1.3.3 =
+Fixed retweets truncated links and more.
