@@ -133,6 +133,7 @@ We've tested it and as far as we know it works great! Phew, but if you have an i
 
 = 2.1 =
 * [Updated] Intents was on by default before selected (but not saved) - now off on initialisation and user selection to turn on required
+* [Fixed] Show Avatar was maintaining indent of tweets when turned off after having been set. Now checks for Avatar on flag not just size change.
 
 = 2.0 =
 * [Added] Twitter Avatar, display, controls, presentation, styling and more

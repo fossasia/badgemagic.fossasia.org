@@ -496,7 +496,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			// Now display the tweets, if we can.
 			if($tweets) : ?>
 			    <?php foreach($tweets as $t) : ?>
-			        <li<?php echo ($showAvatar) ? ' class="avatar"':""; ?><?php echo ($avatarSize) ? ' style="margin-left:'.($avatarSize+5).'px"':""; ?>>
+			        <li<?php echo ($showAvatar) ? ' class="avatar"':""; ?><?php echo ($showAvatar && $avatarSize) ? ' style="margin-left:'.($avatarSize+5).'px"':""; ?>>
 			        	<?php
 			        		if ($showAvatar){
 			        			echo '<img ';
