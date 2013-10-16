@@ -132,7 +132,7 @@ We've tested it and as far as we know it works great! Phew, but if you have an i
 == Changelog ==
 
 = 2.1 =
-* [Doh] Read 2.0 changes below – Source control issue uploading correct directories
+* [Updated] Intents was on by default before selected (but not saved) - now off on initialisation and user selection to turn on required
 
 = 2.0 =
 * [Added] Twitter Avatar, display, controls, presentation, styling and more

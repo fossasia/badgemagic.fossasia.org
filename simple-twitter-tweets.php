@@ -128,7 +128,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			, 'timeRef'				=> false // false = use old full hour ref, true if selected will use hour ref as h (twitter style)
 			, 'timeAgo'				=> true // true = show ago, false will turn it off
 			// Intents
-			, 'twitterIntents'		=> true // true = Default: show Twitter Intents
+			, 'twitterIntents'		=> false // true = Default: show Twitter Intents
 			, 'twitterIntentsText'	=> false // false = Default: Show text - activate to turn off text display and use icons only
 			, 'intentColor'			=> "#999999" // Default colour, light grey
 			// Avatar
