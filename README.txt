@@ -131,6 +131,9 @@ We've tested it and as far as we know it works great! Phew, but if you have an i
 
 == Changelog ==
 
+= 2.1 =
+* [Doh] Read 2.0 changes below – Source control issue uploading correct directories
+
 = 2.0 =
 * [Added] Twitter Avatar, display, controls, presentation, styling and more
 * [Added] Time display formating and options
