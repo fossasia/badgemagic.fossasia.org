@@ -3,12 +3,12 @@ Contributors: Planet Interactive
 Donate: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9437VN7R36VN
 Tags: Twitter, Stream, Tweets, Twitter OAuth, social
 Requires at least: 3.0
-Tested up to: 3.5.2
-Stable tag: 1.3.3
+Tested up to: 3.6.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple Twitter Tweets - Display your Tweets on your Wordpress site using the new Twitter OAuth API v1.1. (even when you can't connect) Because it's backed up!
+Simple Twitter Tweets - Display your Tweets on your Wordpress site using the new Twitter OAuth API v1.1. (even when you can't connect) Because they're backed up!
 
 == Description ==
 
@@ -31,17 +31,20 @@ Twitter users who want to display their Tweets on their website (or within an ap
 * No passwords required or used
 * Works even when Twitters down, over capacity or not connecting
 * Tweets stored in the database with each call, so if your call to the Twitter API fails for whatever reason there won't be a blank space or Oops message on your site, you'll just see the last set of Tweets the system stored - sweet huh.
-* Tweeted when? - In Human Time using minutes, hours and days (i.e. 5 hours ago)
+* Tweeted when? - In Human Time using minutes, hours and days (i.e. 5 hours ago) or using Twitter time display (i.e. 5h)
+* Twitter intents - increase social interaction with users ability to Reply, Retweet and Favourite your tweets right from you page
+* Twitter intents using bespoke (only three characters) icon font (tiny) and colour the icons right in the widget
 * Did we say it was simple and works...
 
 == Installation ==
 
 Installation is as simple as 1,2,3 or maybe 4 because of Twitter :)
 
-1. Upload `simple-twitter-tweets` to the `/wp-content/plugins/` directory
+1. Upload 'simple-twitter-tweets' to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Add the Widget to your page (e.g. Sidebar) and update the required details
-4. Note: You will need to create a Twitter Application - See below. Oh, it's really easy.
+4. Click Save
+5. Note: You will need to create a Twitter Application - See below. Oh, it's really easy.
 
 = Creating a Twitter Application =
 
@@ -74,8 +77,19 @@ Fill in your details, copy and past the Twitter Application details (as describe
 * Access Token: Under the *Your access token* heading
 * Access Token Secret: Under the *Your access token* heading
 * Choose if you want the @replies included or not
-* Select Twitter Follow Button to show options
-* Choose to Show the button, Add your Twitter name, Show your follower count and your language (defaults to en [English])
+* Avatar: Your image or logo as displayed on Twitter – show on/off
+* Avatar: Round the corners to your image (5px on modern browsers)
+* Avatar: Set the size - defaults to the Twitter default of 48px
+* Time Display: Default is WP human time (i.e. 5 hours ago)
+* Time Display: New option – if set, Twitter time (i.e. 5h)
+* Time Display: Choose to display the 'ago' or not
+* Twitter Intents: Show Twitter intents for 'Reply', 'Retweet' and 'Favourite'
+* Twitter Intents: Option to hide the Text and just use icons
+* Twitter Intents: Colourise the icons to your display
+* Twitter Follow: Choose to Show the Twitter Follow button
+* Twitter Follow: Choose to show your Twitter name
+* Twitter Follow: Choose to show your follower count
+* Twitter Follow: Enforce your language (defaults to en [English])
 * Click Save
 
 Enjoy!
@@ -91,14 +105,16 @@ The Tweets are in a widget as with all widgets, and are a simple unordered list.
 * To make styling easier the &lt;ul&gt; has a class of Tweets - &lt;ul class="tweets"&gt;
 * Each Tweet is a list item &lt;li&gt;
 * Each Time reference is an emphasised link &lt;em&gt;&lt;a&gt;
+* Inside the &lt;li&gt; we now have (if you choose to diplay it) the avatar image
+* Inside the &lt;li&gt; we also have (if you choose to diplay them) the Twitter intents. These are are in a DIV with a class of 'intent-meta' – in case you want to control its placement or spacing further. Each Intent is a link containing a 'span' for icon (using icon fonts for speed and styling flexibility) and another span for the text
 * Done.
 
 = Where can I get help =
 
-If you're really stuck check out the [support portal](http://planetinteractive.freshdesk.com/support/login "Support by Planet Interactive")
+If you're really stuck use the Wordpress Support Forum or check out the [support portal](http://planetinteractive.freshdesk.com/support/login "Support by Planet Interactive")
 
 = More FAQs =
-As far as we know it just works! Phew, but if you have an issue or you want to propose some functionality then submit you ideas at the [support portal](http://planetinteractive.freshdesk.com/support/login "Support by Planet Interactive") and we'll update these FAQs and get onto it when we can.
+We've tested it and as far as we know it works great! Phew, but if you have an issue or you want to propose some functionality then submit you ideas at the [support portal](http://planetinteractive.freshdesk.com/support/login "Support by Planet Interactive") and we'll update these FAQs and get onto it when we can.
 
 == Screenshots ==
 
@@ -114,6 +130,15 @@ As far as we know it just works! Phew, but if you have an issue or you want to p
 10. Style how you like, "Your Tweets your way"
 
 == Changelog ==
+
+= 2.0 =
+* [Added] Twitter Avatar, display, controls, presentation, styling and more
+* [Added] Time display formating and options
+* [Added] Twitter Intents, plus display styling and options
+* [Updated] Time reference i18n (localisation) compliance
+* [Updated] Widget UI, cleaner and more compartmentalized
+* [Fixed] Twitter API Copy/Paste (copy and past can introduce whitespace error - fixed)
+* [Fixed] Widget UI Javascript fix
 
 = 1.3.3 =
 * [Fixed] URLs no longer truncated in retweets!
