@@ -3,8 +3,8 @@ Contributors: Planet Interactive
 Donate: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9437VN7R36VN
 Tags: Twitter, Stream, Tweets, Twitter OAuth, social
 Requires at least: 3.0
-Tested up to: 3.6.1
-Stable tag: 2.1
+Tested up to: 3.9
+Stable tag: 3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,11 @@ We've tested it and as far as we know it works great! Phew, but if you have an i
 10. Style how you like, "Your Tweets your way"
 
 == Changelog ==
+
+= 3.0 =
+* [Fixed] Class conflict error - check for use before including
+* [Fixed] Emoji error (presented as for each error) 4-byte emoji issue
+* [Fixed] Word break (letter break on certain browsers) - moved so break on links only to ensure long URLs don't break display
 
 = 2.1 =
 * [Updated] Intents was on by default before selected (but not saved) - now off on initialisation and user selection to turn on required
