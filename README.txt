@@ -3,8 +3,8 @@ Contributors: Planet Interactive
 Donate: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9437VN7R36VN
 Tags: Twitter, Stream, Tweets, Twitter OAuth, social
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 3.1
+Tested up to: 3.9.2
+Stable tag: 3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,9 +50,9 @@ Installation is as simple as 1,2,3 or maybe 4 because of Twitter :)
 
 The Twitter Widget will never ask for your password, as it gets all your required data from the Open Authentication keys and secrets you will get by creating your application at Twitter. It also means that if you change your password, you won’t need to update any of the details of your Widget.
 
-To find these details, go to https://dev.twitter.com/ and sign in.
+To find these details, go to https://apps.twitter.com/ and sign in.
 
-Once you have logged in successfully, hover over your name in the top right corner, and click "My Applications," then "Create a New Application."
+Center of the screen click "Create a New Application."
 
 Enter a unique name (anything you want), a description (again this is just for you), and your site's URL. You can leave the Callback URL empty as it is not used for this implementation.
 
@@ -118,18 +118,24 @@ We've tested it and as far as we know it works great! Phew, but if you have an i
 
 == Screenshots ==
 
-1. Go to https://dev.twitter.com and Sign In
-2. Top right, hover your name/icon, go to My Application
-3. Create a new Application
-4. Fill a name for your App, a description (this is for you) and your website address (URL)
-5. Click "Create my access token"
-6. If you've already installed in the "Simple Twitter Tweets" plugin go to Appearance->Widgets (otherwise install it first then go here)
-7. Drag the "Simple Twitter Tweets" widget your widget area of choice
-8. Fill in the widget options and correlating Twitter Application OAuth requirements, just copy and paste
-9. New options for "Twitter Follow Button" and what elements to display
-10. Style how you like, "Your Tweets your way"
+1. Go to https://apps.twitter.com and Sign In
+2. Create a new Application
+3. Fill a name for your App, a description (this is for you) and your website address (URL)
+4. Click "Create my access token"
+5. If you've already installed in the "Simple Twitter Tweets" plugin go to Appearance->Widgets (otherwise install it first then go here)
+6. Drag the "Simple Twitter Tweets" widget your widget area of choice
+7. Fill in the widget options and correlating Twitter Application OAuth requirements, just copy and paste
+8. New options for "Twitter Follow Button" and what elements to display
+9. Style how you like, "Your Tweets your way"
 
 == Changelog ==
+= 3.2 =
+* [Added] SSL reference for avatar (profile pic) images for secure pages
+* [Added] Check for data retrieval, handles foreach warning (bullet proof old bug)
+* [Added] Defined 'ago' so when not used handles warning
+* [Added] Clean inputs no whitespace issue
+* [Updated] URL for Twitter apps creation updated (as it was moved)
+
 = 3.1 =
 * [Fixed] Serialization error fixed - changed base_64 fix for 4-byte emoji strip
 

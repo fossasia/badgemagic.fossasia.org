@@ -4,11 +4,11 @@ Plugin Name: Simple Twitter Tweets
 Plugin URI: http://www.planet-interactive.co.uk/simple-twitter-tweets
 Description: Display last x number tweets from Twitter API stream, store locally in database to present past tweets when failure to access Twitters restrictive API occurs
 Author: Ashley Sheinwald
-Version: 3.1
+Version: 3.2
 Author URI: http://www.planet-interactive.co.uk/
 */
 
-/*  Copyright 2013  Ashley Sheinwald  (email : ashley@planet-interactive.co.uk)
+/*  Copyright 2014  Ashley Sheinwald  (email : ashley@planet-interactive.co.uk)
 
 		This program is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License, version 2, as
@@ -147,26 +147,26 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		$instance 			= wp_parse_args( (array) $instance, $defaults );
 		$title 				= $instance['title'];
 		$name 				= $instance['name'];
-		$numTweets 			= $instance['numTweets'];
-		$cacheTime 			= $instance['cacheTime'];
+		$numTweets 		= $instance['numTweets'];
+		$cacheTime 		= $instance['cacheTime'];
 		$consumerKey 		= trim($instance['consumerKey']);
 		$consumerSecret 	= trim($instance['consumerSecret']);
 		$accessToken 		= trim($instance['accessToken']);
-		$accessTokenSecret 	= trim($instance['accessTokenSecret']);
+		$accessTokenSecret	= trim($instance['accessTokenSecret']);
 		$exclude_replies 	= $instance['exclude_replies'];
 		$twitterFollow 		= $instance['twitterFollow'];
-		$dataShowCount 		= $instance['dataShowCount'];
+		$dataShowCount 	= $instance['dataShowCount'];
 		$dataShowScreenName = $instance['dataShowScreenName'];
 		$dataLang 			= $instance['dataLang'];
 		// STARTING NEW FOR 2.0
 		$timeRef 			= $instance['timeRef'];
 		$timeAgo 			= $instance['timeAgo'];
-		$twitterIntents 	= $instance['twitterIntents'];
+		$twitterIntents 		= $instance['twitterIntents'];
 		$twitterIntentsText = $instance['twitterIntentsText'];
 		$intentColor 		= $instance['intentColor'];
 		$showAvatar 		= $instance['showAvatar'];
 		$roundCorners 		= $instance['roundCorners'];
-		$avatarSize 		= $instance['avatarSize'];
+		$avatarSize 			= $instance['avatarSize'];
 		?>
 
 		<?php
@@ -298,26 +298,26 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		//Strip tags from title and name to remove HTML
 		$instance['title'] 				= strip_tags( $new_instance['title'] );
 		$instance['name'] 				= strip_tags( $new_instance['name'] );
-		$instance['numTweets'] 			= $new_instance['numTweets'];
+		$instance['numTweets'] 		= $new_instance['numTweets'];
 		$instance['cacheTime'] 			= $new_instance['cacheTime'];
 		$instance['consumerKey'] 		= trim($new_instance['consumerKey']);
 		$instance['consumerSecret'] 	= trim($new_instance['consumerSecret']);
 		$instance['accessToken'] 		= trim($new_instance['accessToken']);
 		$instance['accessTokenSecret'] 	= trim($new_instance['accessTokenSecret']);
-		$instance['exclude_replies'] 	= $new_instance['exclude_replies'];
+		$instance['exclude_replies'] 		= $new_instance['exclude_replies'];
 		$instance['twitterFollow'] 		= $new_instance['twitterFollow'];
-		$instance['dataShowCount']		= $new_instance['dataShowCount'];
+		$instance['dataShowCount']	= $new_instance['dataShowCount'];
 		$instance['dataShowScreenName']	= $new_instance['dataShowScreenName'];
 		$instance['dataLang']			= $new_instance['dataLang'];
 		// STARTING NEW FOR 2.0
 		$instance['timeRef'] 			= $new_instance['timeRef'];
 		$instance['timeAgo'] 			= $new_instance['timeAgo'];
-		$instance['twitterIntents'] 	= $new_instance['twitterIntents'];
-		$instance['twitterIntentsText'] = $new_instance['twitterIntentsText'];
-		$instance['intentColor']		= strip_tags( $new_instance['intentColor'] );
+		$instance['twitterIntents'] 		= $new_instance['twitterIntents'];
+		$instance['twitterIntentsText'] 	= $new_instance['twitterIntentsText'];
+		$instance['intentColor']			= strip_tags( $new_instance['intentColor'] );
 		$instance['showAvatar'] 		= $new_instance['showAvatar'];
 		$instance['roundCorners'] 		= $new_instance['roundCorners'];
-		$instance['avatarSize'] 		= strip_tags( $new_instance['avatarSize'] );
+		$instance['avatarSize'] 			= strip_tags( $new_instance['avatarSize'] );
 
 		return $instance;
 	}
@@ -332,13 +332,13 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		$PI_title 				= empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 		$PI_name 				= $instance['name'];
 		$PI_numTweets 		= $instance['numTweets'];
-		$PI_cacheTime 		= $instance['cacheTime'];
+		$PI_cacheTime 			= $instance['cacheTime'];
 
 		//Setup Twitter API OAuth tokens
 		$PI_consumerKey 		= trim($instance['consumerKey']);
 		$PI_consumerSecret 	= trim($instance['consumerSecret']);
 		$PI_accessToken 		= trim($instance['accessToken']);
-		$PI_accessTokenSecret= trim($instance['accessTokenSecret']);
+		$PI_accessTokenSecret	= trim($instance['accessTokenSecret']);
 
 		$PI_exclude_replies 	= isset( $instance['exclude_replies'] ) ? $instance['exclude_replies'] : false;
 		$PI_twitterFollow 		= isset( $instance['twitterFollow'] ) ? $instance['twitterFollow'] : false;
@@ -379,12 +379,12 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 
 			// Configuration.
 			$numTweets 			= $PI_numTweets; 		// Num tweets to show
-			$name 				= $PI_name;				// Twitter UserName
+			$name 					= $PI_name;				// Twitter UserName
 			$cacheTime 			= $PI_cacheTime; 		// Time in minutes between updates.
 
 			// Get from https://dev.twitter.com/
 			// Login - Create New Application, fill in details and use required data below
-			$consumerKey 		= trim($PI_consumerKey);		// OAuth Key
+			$consumerKey 			= trim($PI_consumerKey);		// OAuth Key
 			$consumerSecret 		= trim($PI_consumerSecret);		// OAuth Secret
 			$accessToken 			= trim($PI_accessToken);		// OAuth Access Token
 			$accessTokenSecret 	= trim($PI_accessTokenSecret);	// OAuth Token Secret
@@ -399,12 +399,12 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			$timeRef 				= $PI_timeRef; // Time ref: hours or short h
 			$timeAgo 				= $PI_timeAgo; // Human Time: ago ref or not
 			$twitterIntents			= $PI_twitterIntents; // Intent on/off
-			$twitterIntentsText 	= $PI_twitterIntentsText; // Intents Text on/off
+			$twitterIntentsText 		= $PI_twitterIntentsText; // Intents Text on/off
 			$intentColor 			= $PI_intentColor; // Intent icons colour
 
 			$showAvatar 			= $PI_showAvatar;
-			$roundCorners 		= $PI_roundCorners;
-			$avatarSize 			= $PI_avatarSize;
+			$roundCorners 			= $PI_roundCorners;
+			$avatarSize 				= $PI_avatarSize;
 
 			// COMMUNITY REQUEST! (1)
 			$transName = 'list-tweets-'.$name; // Name of value in database. [added $name for multiple account use]
@@ -431,8 +431,8 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			$fetchedTweets = $connection->get(
 				'statuses/user_timeline',
 				array(
-					'screen_name'     => $name,
-					'count'           => $totalToFetch,
+					'screen_name'    => $name,
+					'count'           	=> $totalToFetch,
 					'exclude_replies' => $exclude_replies
 				)
 			);
@@ -440,7 +440,6 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			// Did the fetch fail?
 			if($connection->http_code != 200) :
 				$tweets = get_option($backupName); // False if there has never been data saved.
-
 			else :
 				// Fetch succeeded.
 				// Now update the array to store just what we need.
@@ -453,14 +452,26 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 						// Core info.
 						$name = $tweet->user->name;
 
-					// COMMUNITY REQUEST !!!!!! (2)
+						// COMMUNITY REQUEST !!!!!! (2)
 						$screen_name = $tweet->user->screen_name;
 
 						$permalink = 'http://twitter.com/'. $name .'/status/'. $tweet->id_str;
 						$tweet_id = $tweet->id_str;
 
 						/* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
-						$image = $tweet->user->profile_image_url;
+						//  Check for SSL via protocol https then display relevant image - thanks SO - this should do
+						if (isset($_SERVER['HTTPS']) &&
+								($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+								isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+								$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+							// $protocol = 'https://';
+							$image = $tweet->user->profile_image_url_https;
+						}
+						else {
+							// $protocol = 'http://';
+							$image = $tweet->user->profile_image_url;
+						}
+						// $image = $tweet->user->profile_image_url;
 
 						// Process Tweets - Use Twitter entities for correct URL, hash and mentions
 						$text = $this->process_links($tweet);
@@ -507,7 +518,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 
 			// Now display the tweets, if we can.
 			if($tweets) : ?>
-					<?php foreach($tweets as $t) : ?>
+					<?php foreach( (array) $tweets as $t) : // casting array to array just in case it's empty - then prevents PHP warning ?>
 							<li<?php echo ($showAvatar) ? ' class="avatar"':""; ?><?php echo ($showAvatar && $avatarSize) ? ' style="margin-left:'.($avatarSize+5).'px"':""; ?>>
 								<?php
 									if ($showAvatar){
@@ -535,6 +546,9 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 								// Ago - to show?
 								if($timeAgo == "true"){
 									$displayAgo = " ago";
+								}else{
+									// Added to counter 'no ago var' setting undefined variable warning
+									$displayAgo = "";
 								}
 								// Use to make il8n compliant
 								printf(__('%1$s%2$s'), $timeDisplay, $displayAgo);
