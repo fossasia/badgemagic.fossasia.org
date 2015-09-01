@@ -4,11 +4,11 @@ Plugin Name: Simple Twitter Tweets
 Plugin URI: http://www.planet-interactive.co.uk/simple-twitter-tweets
 Description: Display last x number tweets from Twitter API stream, store locally in database to present past tweets when failure to access Twitters restrictive API occurs
 Author: Ashley Sheinwald
-Version: 3.2
+Version: 3.3
 Author URI: http://www.planet-interactive.co.uk/
 */
 
-/*  Copyright 2014  Ashley Sheinwald  (email : ashley@planet-interactive.co.uk)
+/*  Copyright 2014-2015  Ashley Sheinwald  (email : ashley@planet-interactive.co.uk)
 
 		This program is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License, version 2, as
@@ -33,10 +33,10 @@ Author URI: http://www.planet-interactive.co.uk/
 
 class PI_SimpleTwitterTweets extends WP_Widget{
 
-	function PI_SimpleTwitterTweets()  {
+	function __construct()  {
 		$widget_ops = array('classname' => 'PI_SimpleTwitterTweets', 'description' => 'Displays the most recent tweets from your Twitter Stream' );
 		//$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'Not-required-this-time' );
-		$this->WP_Widget('PI_SimpleTwitterTweets', 'Simple Twitter Tweets', $widget_ops);
+		parent::__construct('PI_SimpleTwitterTweets', 'Simple Twitter Tweets', $widget_ops);
 
 		// Load (enqueue) some JS in Admin ONLY on widgets page
 		add_action('admin_enqueue_scripts', array(&$this, 'PI_load_admin_scripts'));
