@@ -1,6 +1,7 @@
+/*global jQuery:false */
 jQuery(document).ready(function($) {
 
-	"use strict";
+	'use strict';
 
 	// USe function so we can recall on save
 	function updateColorPicker(){
@@ -34,10 +35,10 @@ jQuery(document).ready(function($) {
 	$(document).on('click', '.secrets h4, .avatar h4, .twitterFollow h4, .modTime h4, .twitterIntents h4', function() {
 		// var tFollow = $(this).next('div');
 		$(this).next('div').slideToggle('fast', function() {
-			if(!$(this).is(":hidden")) {
-				$(this).siblings('h4').children('span').html("&#9650;");
+			if(!$(this).is(':hidden')) {
+				$(this).siblings('h4').children('span').html('&#9650;');
 			}else{
-				$(this).siblings('h4').children('span').html("&#9660;");
+				$(this).siblings('h4').children('span').html('&#9660;');
 			}
 		});
 	});
@@ -46,7 +47,7 @@ jQuery(document).ready(function($) {
 	$(document).ajaxSuccess(function(e, xhr, settings) {
 		// reset toggles - clean view
 		$('.secrets > div, .avatar > div, .twitterFollow > div, .modTime > div, .twitterIntents > div').slideUp();
-		$('.secrets h4 > span, .avatar h4 > span, .twitterFollow h4 > span, .modTime h4 > span, .twitterIntents h4 > span').html("&#9660;");
+		$('.secrets h4 > span, .avatar h4 > span, .twitterFollow h4 > span, .modTime h4 > span, .twitterIntents h4 > span').html('&#9660;');
 
 		// re-initiate the colour picker
 		if(settings.data.search('action=save-widget') != -1 ) {
