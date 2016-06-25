@@ -52,7 +52,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 	// FRONT END - Register and enqueue style sheet.
 	function register_stt_styles() {
 		if(!is_admin()){
-			wp_register_style( 'PI_stt_front', plugins_url( 'simple-twitter-tweets/css/stt.min.css' ) );
+			wp_register_style( 'PI_stt_front', plugins_url( 'wp-simple-twitter-feeds/css/stt.min.css' ) );
 			wp_enqueue_style( 'PI_stt_front' );
 		}
 	}
@@ -78,7 +78,8 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 					wp_enqueue_script( 'farbtastic' );
 			}
 			// Now load STT JS
-		wp_enqueue_script('PI_stt_js', plugins_url( '/simple-twitter-tweets/js/sttAdmin.min.js' , dirname(__FILE__) ), array('jquery'));
+		wp_enqueue_script('PI_stt_js', plugins_url( '/wp-simple-twitter-feeds/js/sttAdmin.min.js' , dirname(__FILE__) ), array('jquery'));
+		wp_enqueue_script('PI_stt_twitter_auth_disable_js', plugins_url( '/wp-simple-twitter-feeds/js/sttTwitterAuthDisable.js' , dirname(__FILE__) ), array('jquery'));
 	}
 
 	function process_links($tweet) {
@@ -202,7 +203,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			<h4 class="button-secondary" style="width:100%; text-align:center;"><?php _e('Loklak API settings', 'simple-twitter-tweets') ?> <span style="font-size:75%;">&#9660;</span></h4>
 			<div style="padding:10px;">
 				<p>
-					<input class="checkbox" type="checkbox" <?php checked( isset( $instance['loklakAPI']), true ); ?> id="<?php echo $this->get_field_id( 'loklakAPI' ); ?>" name="<?php echo $this->get_field_name( 'loklakAPI' ); ?>" />
+					<input class="checkbox loklakAPI" type="checkbox" <?php checked( isset( $instance['loklakAPI']), true ); ?> id="<?php echo $this->get_field_id( 'loklakAPI' ); ?>" name="<?php echo $this->get_field_name( 'loklakAPI' ); ?>" />
 					<label for="<?php echo $this->get_field_id( 'loklakAPI' ); ?>"><?php _e('Check to use anonymous API of <a href="http://loklak.org/">loklak.org</a> and get plugin data through loklak (no registration and authentication required). <a href="http://loklak.org/">Find out more</a> ', 'simple-twitter-tweets'); ?></label>
 				</p>
 			</div>
@@ -214,20 +215,20 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			<h4 class="button-secondary" style="width:100%; text-align:center;"><?php _e('Twitter API settings', 'simple-twitter-tweets') ?> <span style="font-size:75%;">&#9660;</span></h4>
 			<div style="padding:10px;">
 				<p>
-					<label for="<?php echo $this->get_field_id('consumerKey'); ?>"><?php _e('Consumer Key:', 'simple-twitter-tweets') ?> <input class="widefat" id="<?php echo $this->get_field_id('consumerKey'); ?>" name="<?php echo $this->get_field_name('consumerKey'); ?>" type="text" value="<?php echo esc_attr($consumerKey); ?>" /></label>
+					<label for="<?php echo $this->get_field_id('consumerKey'); ?>"><?php _e('Consumer Key:', 'simple-twitter-tweets') ?> <input class="widefat consumerKey" id="<?php echo $this->get_field_id('consumerKey'); ?>" name="<?php echo $this->get_field_name('consumerKey'); ?>" type="text" value="<?php echo esc_attr($consumerKey); ?>" /></label>
 				</p>
 				<p>
-					<label for="<?php echo $this->get_field_id('consumerSecret'); ?>"><?php _e('Consumer Secret:', 'simple-twitter-tweets') ?> <input class="widefat" id="<?php echo $this->get_field_id('consumerSecret'); ?>" name="<?php echo $this->get_field_name('consumerSecret'); ?>" type="text" value="<?php echo esc_attr($consumerSecret); ?>" /></label>
+					<label for="<?php echo $this->get_field_id('consumerSecret'); ?>"><?php _e('Consumer Secret:', 'simple-twitter-tweets') ?> <input class="widefat consumerSecret" id="<?php echo $this->get_field_id('consumerSecret'); ?>" name="<?php echo $this->get_field_name('consumerSecret'); ?>" type="text" value="<?php echo esc_attr($consumerSecret); ?>" /></label>
 				</p>
 				<p>
-					<label for="<?php echo $this->get_field_id('accessToken'); ?>"><?php _e('Access Token:', 'simple-twitter-tweets') ?> <input class="widefat" id="<?php echo $this->get_field_id('accessToken'); ?>" name="<?php echo $this->get_field_name('accessToken'); ?>" type="text" value="<?php echo esc_attr($accessToken); ?>" /></label>
+					<label for="<?php echo $this->get_field_id('accessToken'); ?>"><?php _e('Access Token:', 'simple-twitter-tweets') ?> <input class="widefat accessToken" id="<?php echo $this->get_field_id('accessToken'); ?>" name="<?php echo $this->get_field_name('accessToken'); ?>" type="text" value="<?php echo esc_attr($accessToken); ?>" /></label>
 				</p>
 				<p>
-					<label for="<?php echo $this->get_field_id('accessTokenSecret'); ?>"><?php _e('Access Token Secret:', 'simple-twitter-tweets') ?> <input class="widefat" id="<?php echo $this->get_field_id('accessTokenSecret'); ?>" name="<?php echo $this->get_field_name('accessTokenSecret'); ?>" type="text" value="<?php echo esc_attr($accessTokenSecret); ?>" /></label>
+					<label for="<?php echo $this->get_field_id('accessTokenSecret'); ?>"><?php _e('Access Token Secret:', 'simple-twitter-tweets') ?> <input class="widefat accessTokenSecret" id="<?php echo $this->get_field_id('accessTokenSecret'); ?>" name="<?php echo $this->get_field_name('accessTokenSecret'); ?>" type="text" value="<?php echo esc_attr($accessTokenSecret); ?>" /></label>
 				</p>
 				<p>
-						<input class="checkbox" type="checkbox" <?php checked( isset( $instance['exclude_replies']), true ); ?> id="<?php echo $this->get_field_id( 'exclude_replies' ); ?>" name="<?php echo $this->get_field_name( 'exclude_replies' ); ?>" />
-						<label for="<?php echo $this->get_field_id( 'exclude_replies' ); ?>"><?php _e('Exclude_@replies', 'simple-twitter-tweets'); ?></label>
+					<input class="checkbox" type="checkbox" <?php checked( isset( $instance['exclude_replies']), true ); ?> id="<?php echo $this->get_field_id( 'exclude_replies' ); ?>" name="<?php echo $this->get_field_name( 'exclude_replies' ); ?>" />
+					<label for="<?php echo $this->get_field_id( 'exclude_replies' ); ?>"><?php _e('Exclude_@replies', 'simple-twitter-tweets'); ?></label>
 				</p>
 			</div>
 		</div>
@@ -437,7 +438,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			$totalToFetch = ($exclude_replies) ? max(50, $numTweets * 3) : $numTweets;
 
 			// if(false === ($tweets = unserialize( base64_decode(get_transient( $transName ) ) ) ) ) :
-			//if(false === ($tweets = get_transient( $transName ) ) ) :
+			if(false === ($tweets = get_transient( $transName ) ) ) :
 				if (false === $loklakAPI) :
 				// Get the tweets from Twitter.
 					if ( ! class_exists('TwitterOAuth') )
@@ -470,11 +471,10 @@ class PI_SimpleTwitterTweets extends WP_Widget{
                     $fetchedTweets = json_decode($fetchedTweets, true);
                     $fetchedTweets = json_decode($fetchedTweets['body'], true);
                     $fetchedTweets = $fetchedTweets['statuses'];
-                    //print_r($fetchedTweets);
                 endif;
 
 				// Did the fetch fail?
-				if( false === $loklakAPI && $connection->http_code != 200 ) :
+				if( empty($fetchedTweets) || $connection->http_code != 200 ) :
                     $tweets = get_option($backupName); // False if there has never been data saved.
 				else :
 					// Fetch succeeded.
@@ -535,7 +535,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 					set_transient($transName, $tweets, 60 * $cacheTime);
 					update_option($backupName, $tweets );
 				endif;
-			//endif;
+			endif;
 
 			if(!function_exists('twitter_time_diff'))
 			{
