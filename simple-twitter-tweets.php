@@ -119,19 +119,20 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 
 		//Set up some default widget settings.
 		$defaults = array(
-				'title' 				=> __('Recent Tweets', 'simple-twitter-tweets')
+			  'title' 				=> __('Recent Tweets', 'simple-twitter-tweets')
 			, 'name' 				=> __('iPlanetUK', 'simple-twitter-tweets')
 			, 'numTweets' 			=> __(4, 'simple-twitter-tweets') // How many to display
 			, 'cacheTime' 			=> __(5, 'simple-twitter-tweets') // Time in minutes between updates
+			, 'loklakAPI'			=> true // true = use loklak api instead of twitter
 			, 'consumerKey' 		=> __('xxxxxxxxxxxx', 'simple-twitter-tweets') // Consumer key
 			, 'consumerSecret' 		=> __('xxxxxxxxxxxx', 'simple-twitter-tweets') // Consumer secret
-			, 'accessToken' 			=> __('xxxxxxxxxxxx', 'simple-twitter-tweets') // Access token
+			, 'accessToken' 		=> __('xxxxxxxxxxxx', 'simple-twitter-tweets') // Access token
 			, 'accessTokenSecret'	=> __('xxxxxxxxxxxx', 'simple-twitter-tweets') // Access token secret
 			, 'exclude_replies'		=> true
-			, 'twitterFollow'			=> false
+			, 'twitterFollow'		=> false
 			, 'dataShowCount'		=> false
 			, 'dataShowScreenName'	=> false
-			, 'dataLang'				=> __('en', 'simple-twitter-tweets') // Language reference
+			, 'dataLang'			=> __('en', 'simple-twitter-tweets') // Language reference
 			// STARTING NEW FOR 2.0
 			// Time
 			, 'timeRef'				=> false // false = use old full hour ref, true if selected will use hour ref as h (twitter style)
@@ -148,25 +149,26 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		$instance 			= wp_parse_args( (array) $instance, $defaults );
 		$title 				= $instance['title'];
 		$name 				= $instance['name'];
-		$numTweets 		= $instance['numTweets'];
-		$cacheTime 		= $instance['cacheTime'];
-		$consumerKey 	= trim($instance['consumerKey']);
+		$numTweets 			= $instance['numTweets'];
+		$cacheTime 			= $instance['cacheTime'];
+		$loklakAPI 			= $isntance['loklakAPI'];
+		$consumerKey 		= trim($instance['consumerKey']);
 		$consumerSecret 	= trim($instance['consumerSecret']);
 		$accessToken 		= trim($instance['accessToken']);
 		$accessTokenSecret	= trim($instance['accessTokenSecret']);
 		$exclude_replies 	= $instance['exclude_replies'];
 		$twitterFollow 		= $instance['twitterFollow'];
-		$dataShowCount 	= $instance['dataShowCount'];
+		$dataShowCount 		= $instance['dataShowCount'];
 		$dataShowScreenName = $instance['dataShowScreenName'];
 		$dataLang 			= $instance['dataLang'];
 		// STARTING NEW FOR 2.0
 		$timeRef 			= $instance['timeRef'];
 		$timeAgo 			= $instance['timeAgo'];
-		$twitterIntents 		= $instance['twitterIntents'];
+		$twitterIntents 	= $instance['twitterIntents'];
 		$twitterIntentsText = $instance['twitterIntentsText'];
 		$intentColor 		= $instance['intentColor'];
 		$showAvatar 		= $instance['showAvatar'];
-		$roundCorners 	= $instance['roundCorners'];
+		$roundCorners 		= $instance['roundCorners'];
 		$avatarSize 		= $instance['avatarSize'];
 		?>
 
@@ -193,6 +195,18 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		<p>
 			<label for="<?php echo $this->get_field_id('cacheTime'); ?>"><?php _e('Time in Minutes between updates:', 'simple-twitter-tweets') ?> <input class="widefat" id="<?php echo $this->get_field_id('cacheTime'); ?>" name="<?php echo $this->get_field_name('cacheTime'); ?>" type="text" value="<?php echo esc_attr($cacheTime); ?>" /></label>
 		</p>
+
+		<?php // NEW FOR 2.0 ?>
+		<?php // Loklak API options ?>
+		<div class="secrets" style="background:#d6eef9; margin-bottom:10px;">
+			<h4 class="button-secondary" style="width:100%; text-align:center;"><?php _e('Loklak API settings', 'simple-twitter-tweets') ?> <span style="font-size:75%;">&#9660;</span></h4>
+			<div style="padding:10px;">
+				<p>
+					<input class="checkbox" type="checkbox" <?php checked( isset( $instance['loklakAPI']), true ); ?> id="<?php echo $this->get_field_id( 'loklakAPI' ); ?>" name="<?php echo $this->get_field_name( 'loklakAPI' ); ?>" />
+					<label for="<?php echo $this->get_field_id( 'exclude_replies' ); ?>"><?php _e('Check to use anonymous API of <a href="http://loklak.org/">loklak.org</a> and get plugin data through loklak (no registration and authentication required). <a href="http://loklak.org/">Find out more</a> ', 'simple-twitter-tweets'); ?></label>
+				</p>
+			</div>
+		</div>
 
 		<?php // NEW FOR 2.0 ?>
 		<?php // Time display options ?>
