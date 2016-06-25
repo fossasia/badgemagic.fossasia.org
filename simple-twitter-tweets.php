@@ -151,7 +151,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		$name 				= $instance['name'];
 		$numTweets 			= $instance['numTweets'];
 		$cacheTime 			= $instance['cacheTime'];
-		$loklakAPI 			= $isntance['loklakAPI'];
+		$loklakAPI 			= $instance['loklakAPI'];
 		$consumerKey 		= trim($instance['consumerKey']);
 		$consumerSecret 	= trim($instance['consumerSecret']);
 		$accessToken 		= trim($instance['accessToken']);
@@ -203,7 +203,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			<div style="padding:10px;">
 				<p>
 					<input class="checkbox" type="checkbox" <?php checked( isset( $instance['loklakAPI']), true ); ?> id="<?php echo $this->get_field_id( 'loklakAPI' ); ?>" name="<?php echo $this->get_field_name( 'loklakAPI' ); ?>" />
-					<label for="<?php echo $this->get_field_id( 'exclude_replies' ); ?>"><?php _e('Check to use anonymous API of <a href="http://loklak.org/">loklak.org</a> and get plugin data through loklak (no registration and authentication required). <a href="http://loklak.org/">Find out more</a> ', 'simple-twitter-tweets'); ?></label>
+					<label for="<?php echo $this->get_field_id( 'loklakAPI' ); ?>"><?php _e('Check to use anonymous API of <a href="http://loklak.org/">loklak.org</a> and get plugin data through loklak (no registration and authentication required). <a href="http://loklak.org/">Find out more</a> ', 'simple-twitter-tweets'); ?></label>
 				</p>
 			</div>
 		</div>
@@ -437,7 +437,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 			$totalToFetch = ($exclude_replies) ? max(50, $numTweets * 3) : $numTweets;
 
 			// if(false === ($tweets = unserialize( base64_decode(get_transient( $transName ) ) ) ) ) :
-			if(false === ($tweets = get_transient( $transName ) ) ) :
+			//if(false === ($tweets = get_transient( $transName ) ) ) :
 				if (false === $loklakAPI) :
 				// Get the tweets from Twitter.
 					if ( ! class_exists('TwitterOAuth') )
@@ -456,8 +456,8 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 					$fetchedTweets = $connection->get(
 						'statuses/user_timeline',
 						array(
-							'screen_name'    => $name,
-							'count'           	=> $totalToFetch,
+							'screen_name'     => $name,
+							'count'           => $totalToFetch,
 							'exclude_replies' => $exclude_replies
 						)
 					);
@@ -470,6 +470,7 @@ class PI_SimpleTwitterTweets extends WP_Widget{
                     $fetchedTweets = json_decode($fetchedTweets, true);
                     $fetchedTweets = json_decode($fetchedTweets['body'], true);
                     $fetchedTweets = $fetchedTweets['statuses'];
+                    //print_r($fetchedTweets);
                 endif;
 
 				// Did the fetch fail?
@@ -483,57 +484,58 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 
 					for($i = 0; $i < $limitToDisplay; $i++) :
 						$tweet = $fetchedTweets[$i];
+						$tweet = (object)$tweet;
+                        $tweet->user = (object)($tweet->user);
+						// Core info.
+						$name = $tweet->user->name;
 
-							// Core info.
-							$name = $tweet->user->name;
+						// COMMUNITY REQUEST !!!!!! (2)
+						$screen_name = $tweet->user->screen_name;
 
-							// COMMUNITY REQUEST !!!!!! (2)
-							$screen_name = $tweet->user->screen_name;
+						$permalink = 'http://twitter.com/'. $name .'/status/'. $tweet->id_str;
+						$tweet_id = $tweet->id_str;
 
-							$permalink = 'http://twitter.com/'. $name .'/status/'. $tweet->id_str;
-							$tweet_id = $tweet->id_str;
+						/* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
+						//  Check for SSL via protocol https then display relevant image - thanks SO - this should do
+						if ((isset($_SERVER['HTTPS']) &&
+								($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+								isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+								$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') || $loklakAPI) {
+							// $protocol = 'https://';
+							$image = $tweet->user->profile_image_url_https;
+						}
+						else if (!$loklakAPI) {
+							// $protocol = 'http://';
+							$image = $tweet->user->profile_image_url;
+						}
+						// $image = $tweet->user->profile_image_url;
 
-							/* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
-							//  Check for SSL via protocol https then display relevant image - thanks SO - this should do
-							if (isset($_SERVER['HTTPS']) &&
-									($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
-									isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
-									$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
-								// $protocol = 'https://';
-								$image = $tweet->user->profile_image_url_https;
-							}
-							else if (!$loklakAPI) {
-								// $protocol = 'http://';
-								$image = $tweet->user->profile_image_url;
-							}
-							// $image = $tweet->user->profile_image_url;
+						// Process Tweets - Use Twitter entities for correct URL, hash and mentions
+						$text = $this->process_links($tweet);
 
-							// Process Tweets - Use Twitter entities for correct URL, hash and mentions
-							$text = $this->process_links($tweet);
+						// lets strip 4-byte emojis
+						$text = $this->twitter_api_strip_emoji( $text );
 
-							// lets strip 4-byte emojis
-							$text = $this->twitter_api_strip_emoji( $text );
+						// Need to get time in Unix format.
+						$time = $tweet->created_at;
+						$time = date_parse($time);
+						$uTime = mktime($time['hour'], $time['minute'], $time['second'], $time['month'], $time['day'], $time['year']);
 
-							// Need to get time in Unix format.
-							$time = $tweet->created_at;
-							$time = date_parse($time);
-							$uTime = mktime($time['hour'], $time['minute'], $time['second'], $time['month'], $time['day'], $time['year']);
-
-							// Now make the new array.
-							$tweets[] = array(
-								'text' => $text,
-								'name' => $name,
-								'permalink' => $permalink,
-								'image' => $image,
-								'time' => $uTime,
-								'tweet_id' => $tweet_id
-								);
+						// Now make the new array.
+						$tweets[] = array(
+							'text' => $text,
+							'name' => $name,
+							'permalink' => $permalink,
+							'image' => $image,
+							'time' => $uTime,
+							'tweet_id' => $tweet_id
+							);
 					endfor;
 
 					set_transient($transName, $tweets, 60 * $cacheTime);
 					update_option($backupName, $tweets );
 				endif;
-			endif;
+			//endif;
 
 			if(!function_exists('twitter_time_diff'))
 			{
