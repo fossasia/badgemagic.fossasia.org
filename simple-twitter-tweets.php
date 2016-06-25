@@ -317,26 +317,27 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		//Strip tags from title and name to remove HTML
 		$instance['title'] 				= strip_tags( $new_instance['title'] );
 		$instance['name'] 				= strip_tags( $new_instance['name'] );
-		$instance['numTweets'] 		= $new_instance['numTweets'];
-		$instance['cacheTime'] 		= $new_instance['cacheTime'];
+		$instance['numTweets'] 			= $new_instance['numTweets'];
+		$instance['cacheTime'] 			= $new_instance['cacheTime'];
+		$instance['loklakAPI']			= $new_instance['loklakAPI'];
 		$instance['consumerKey'] 		= trim($new_instance['consumerKey']);
 		$instance['consumerSecret'] 	= trim($new_instance['consumerSecret']);
 		$instance['accessToken'] 		= trim($new_instance['accessToken']);
-		$instance['accessTokenSecret'] = trim($new_instance['accessTokenSecret']);
+		$instance['accessTokenSecret'] 	= trim($new_instance['accessTokenSecret']);
 		$instance['exclude_replies'] 	= $new_instance['exclude_replies'];
 		$instance['twitterFollow'] 		= $new_instance['twitterFollow'];
-		$instance['dataShowCount']	= $new_instance['dataShowCount'];
+		$instance['dataShowCount']		= $new_instance['dataShowCount'];
 		$instance['dataShowScreenName']	= $new_instance['dataShowScreenName'];
 		$instance['dataLang']			= $new_instance['dataLang'];
 		// STARTING NEW FOR 2.0
 		$instance['timeRef'] 			= $new_instance['timeRef'];
 		$instance['timeAgo'] 			= $new_instance['timeAgo'];
-		$instance['twitterIntents'] 		= $new_instance['twitterIntents'];
-		$instance['twitterIntentsText'] 	= $new_instance['twitterIntentsText'];
+		$instance['twitterIntents'] 	= $new_instance['twitterIntents'];
+		$instance['twitterIntentsText'] = $new_instance['twitterIntentsText'];
 		$instance['intentColor']		= strip_tags( $new_instance['intentColor'] );
 		$instance['showAvatar'] 		= $new_instance['showAvatar'];
 		$instance['roundCorners'] 		= $new_instance['roundCorners'];
-		$instance['avatarSize'] 			= strip_tags( $new_instance['avatarSize'] );
+		$instance['avatarSize'] 		= strip_tags( $new_instance['avatarSize'] );
 
 		return $instance;
 	}
@@ -350,19 +351,21 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		//Our variables from the widget settings.
 		$PI_title 				= empty($instance['title']) ? ' ' : apply_filters('widget_title', $instance['title']);
 		$PI_name 				= $instance['name'];
-		$PI_numTweets 		= $instance['numTweets'];
-		$PI_cacheTime 		= $instance['cacheTime'];
+		$PI_numTweets 			= $instance['numTweets'];
+		$PI_cacheTime 			= $instance['cacheTime'];
 
-		//Setup Twitter API OAuth tokens
+		// Setup Loklak API 
+		$PI_loklakAPI			= $instance['loklakAPI'];
+		// Setup Twitter API OAuth tokens
 		$PI_consumerKey 		= trim($instance['consumerKey']);
-		$PI_consumerSecret 	= trim($instance['consumerSecret']);
+		$PI_consumerSecret 		= trim($instance['consumerSecret']);
 		$PI_accessToken 		= trim($instance['accessToken']);
 		$PI_accessTokenSecret	= trim($instance['accessTokenSecret']);
 
 		$PI_exclude_replies 	= isset( $instance['exclude_replies'] ) ? $instance['exclude_replies'] : false;
 		$PI_twitterFollow 		= isset( $instance['twitterFollow'] ) ? $instance['twitterFollow'] : false;
 
-		$PI_dataShowCount 	= isset( $instance['dataShowCount'] ) ? $instance['dataShowCount'] : false;
+		$PI_dataShowCount 		= isset( $instance['dataShowCount'] ) ? $instance['dataShowCount'] : false;
 		$PI_dataShowScreenName 	= isset( $instance['dataShowScreenName'] ) ? $instance['dataShowScreenName'] : false;
 		$PI_dataLang 			= $instance['dataLang'];
 
@@ -371,10 +374,10 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 		$PI_timeAgo 			= isset( $instance['timeAgo'] ) ? $instance['timeAgo'] : false;
 		$PI_twitterIntents 		= isset( $instance['twitterIntents'] ) ? $instance['twitterIntents'] : false;
 		$PI_twitterIntentsText 	= isset( $instance['twitterIntentsText'] ) ? $instance['twitterIntentsText'] : false;
-		$PI_intentColor		= $instance['intentColor'];
+		$PI_intentColor			= $instance['intentColor'];
 
 		// Avatar
-		$PI_showAvatar 		= isset( $instance['showAvatar'] ) ? $instance['showAvatar'] : false;
+		$PI_showAvatar 			= isset( $instance['showAvatar'] ) ? $instance['showAvatar'] : false;
 		$PI_roundCorners 		= isset( $instance['roundCorners'] ) ? $instance['roundCorners'] : false;
 		$PI_avatarSize 			= $instance['avatarSize'];
 
@@ -398,124 +401,137 @@ class PI_SimpleTwitterTweets extends WP_Widget{
 
 			// Configuration.
 			$numTweets 			= $PI_numTweets; 		// Num tweets to show
-			$name 					= $PI_name;				// Twitter UserName
+			$name 				= $PI_name;				// Twitter UserName
 			$cacheTime 			= $PI_cacheTime; 		// Time in minutes between updates.
+
+			// Enable Loklak API
+			$loklakAPI 			= $PI_loklakAPI;
 
 			// Get from https://dev.twitter.com/
 			// Login - Create New Application, fill in details and use required data below
 			$consumerKey 		= trim($PI_consumerKey);		// OAuth Key
-			$consumerSecret 		= trim($PI_consumerSecret);		// OAuth Secret
-			$accessToken 			= trim($PI_accessToken);		// OAuth Access Token
+			$consumerSecret 	= trim($PI_consumerSecret);		// OAuth Secret
+			$accessToken 		= trim($PI_accessToken);		// OAuth Access Token
 			$accessTokenSecret 	= trim($PI_accessTokenSecret);	// OAuth Token Secret
 
-			$exclude_replies 		= $PI_exclude_replies; 	// Leave out @replies?
-			$twitterFollow 			= $PI_twitterFollow; 	// Whether to show Twitter Follow button
+			$exclude_replies 	= $PI_exclude_replies; 	// Leave out @replies?
+			$twitterFollow 		= $PI_twitterFollow; 	// Whether to show Twitter Follow button
 
 			$dataShowCount 		= ($PI_dataShowCount != "true") ? "false" : "true"; // Whether to show Twitter Follower Count
 			$dataShowScreenName	= ($PI_dataShowScreenName != "true") ? "false" : "true"; // Whether to show Twitter Screen Name
-			$dataLang 				= $PI_dataLang; // Tell Twitter what Language is being used
+			$dataLang 			= $PI_dataLang; // Tell Twitter what Language is being used
 
-			$timeRef 				= $PI_timeRef; // Time ref: hours or short h
-			$timeAgo 				= $PI_timeAgo; // Human Time: ago ref or not
-			$twitterIntents			= $PI_twitterIntents; // Intent on/off
-			$twitterIntentsText 	= $PI_twitterIntentsText; // Intents Text on/off
-			$intentColor 			= $PI_intentColor; // Intent icons colour
+			$timeRef 			= $PI_timeRef; // Time ref: hours or short h
+			$timeAgo 			= $PI_timeAgo; // Human Time: ago ref or not
+			$twitterIntents		= $PI_twitterIntents; // Intent on/off
+			$twitterIntentsText = $PI_twitterIntentsText; // Intents Text on/off
+			$intentColor 		= $PI_intentColor; // Intent icons colour
 
-			$showAvatar 			= $PI_showAvatar;
+			$showAvatar 		= $PI_showAvatar;
 			$roundCorners 		= $PI_roundCorners;
-			$avatarSize 			= $PI_avatarSize;
+			$avatarSize 		= $PI_avatarSize;
 
 			// COMMUNITY REQUEST! (1)
 			$transName = 'list-tweets-'.$name; // Name of value in database. [added $name for multiple account use]
 			$backupName = $transName . '-backup'; // Name of backup value in database.
+			$totalToFetch = ($exclude_replies) ? max(50, $numTweets * 3) : $numTweets;
 
 			// if(false === ($tweets = unserialize( base64_decode(get_transient( $transName ) ) ) ) ) :
 			if(false === ($tweets = get_transient( $transName ) ) ) :
+				if (false === $loklakAPI) :
+				// Get the tweets from Twitter.
+					if ( ! class_exists('TwitterOAuth') )
+						include 'twitteroauth/twitteroauth.php';
 
-			// Get the tweets from Twitter.
-			if ( ! class_exists('TwitterOAuth') )
-				include 'twitteroauth/twitteroauth.php';
+					$connection = new TwitterOAuth(
+						$consumerKey,   		// Consumer key
+						$consumerSecret,   	// Consumer secret
+						$accessToken,   		// Access token
+						$accessTokenSecret	// Access token secret
+					);
 
-			$connection = new TwitterOAuth(
-				$consumerKey,   		// Consumer key
-				$consumerSecret,   	// Consumer secret
-				$accessToken,   		// Access token
-				$accessTokenSecret	// Access token secret
-			);
+					// If excluding replies, we need to fetch more than requested as the
+					// total is fetched first, and then replies removed.
+					
+					$fetchedTweets = $connection->get(
+						'statuses/user_timeline',
+						array(
+							'screen_name'    => $name,
+							'count'           	=> $totalToFetch,
+							'exclude_replies' => $exclude_replies
+						)
+					);
+				else : 
+                    if(!class_exists('Loklak')) :
+                        require_once('loklak_php_api/loklak.php');
+                    endif;
+                    $connection = new Loklak();
+                    $fetchedTweets = $connection->search('', null, null, $name, $totalToFetch);
+                    $fetchedTweets = json_decode($fetchedTweets, true);
+                    $fetchedTweets = json_decode($fetchedTweets['body'], true);
+                    $fetchedTweets = $fetchedTweets['statuses'];
+                endif;
 
-			// If excluding replies, we need to fetch more than requested as the
-			// total is fetched first, and then replies removed.
-			$totalToFetch = ($exclude_replies) ? max(50, $numTweets * 3) : $numTweets;
+				// Did the fetch fail?
+				if( false === $loklakAPI && $connection->http_code != 200 ) :
+                    $tweets = get_option($backupName); // False if there has never been data saved.
+				else :
+					// Fetch succeeded.
+					// Now update the array to store just what we need.
+					// (Done here instead of PHP doing this for every page load)
+					$limitToDisplay = min($numTweets, count($fetchedTweets));
 
-			$fetchedTweets = $connection->get(
-				'statuses/user_timeline',
-				array(
-					'screen_name'    => $name,
-					'count'           	=> $totalToFetch,
-					'exclude_replies' => $exclude_replies
-				)
-			);
+					for($i = 0; $i < $limitToDisplay; $i++) :
+						$tweet = $fetchedTweets[$i];
 
-			// Did the fetch fail?
-			if($connection->http_code != 200) :
-				$tweets = get_option($backupName); // False if there has never been data saved.
-			else :
-				// Fetch succeeded.
-				// Now update the array to store just what we need.
-				// (Done here instead of PHP doing this for every page load)
-				$limitToDisplay = min($numTweets, count($fetchedTweets));
+							// Core info.
+							$name = $tweet->user->name;
 
-				for($i = 0; $i < $limitToDisplay; $i++) :
-					$tweet = $fetchedTweets[$i];
+							// COMMUNITY REQUEST !!!!!! (2)
+							$screen_name = $tweet->user->screen_name;
 
-						// Core info.
-						$name = $tweet->user->name;
+							$permalink = 'http://twitter.com/'. $name .'/status/'. $tweet->id_str;
+							$tweet_id = $tweet->id_str;
 
-						// COMMUNITY REQUEST !!!!!! (2)
-						$screen_name = $tweet->user->screen_name;
+							/* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
+							//  Check for SSL via protocol https then display relevant image - thanks SO - this should do
+							if (isset($_SERVER['HTTPS']) &&
+									($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+									isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+									$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+								// $protocol = 'https://';
+								$image = $tweet->user->profile_image_url_https;
+							}
+							else if (!$loklakAPI) {
+								// $protocol = 'http://';
+								$image = $tweet->user->profile_image_url;
+							}
+							// $image = $tweet->user->profile_image_url;
 
-						$permalink = 'http://twitter.com/'. $name .'/status/'. $tweet->id_str;
-						$tweet_id = $tweet->id_str;
+							// Process Tweets - Use Twitter entities for correct URL, hash and mentions
+							$text = $this->process_links($tweet);
 
-						/* Alternative image sizes method: http://dev.twitter.com/doc/get/users/profile_image/:screen_name */
-						//  Check for SSL via protocol https then display relevant image - thanks SO - this should do
-						if (isset($_SERVER['HTTPS']) &&
-								($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
-								isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
-								$_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
-							// $protocol = 'https://';
-							$image = $tweet->user->profile_image_url_https;
-						}
-						else {
-							// $protocol = 'http://';
-							$image = $tweet->user->profile_image_url;
-						}
-						// $image = $tweet->user->profile_image_url;
+							// lets strip 4-byte emojis
+							$text = $this->twitter_api_strip_emoji( $text );
 
-						// Process Tweets - Use Twitter entities for correct URL, hash and mentions
-						$text = $this->process_links($tweet);
+							// Need to get time in Unix format.
+							$time = $tweet->created_at;
+							$time = date_parse($time);
+							$uTime = mktime($time['hour'], $time['minute'], $time['second'], $time['month'], $time['day'], $time['year']);
 
-						// lets strip 4-byte emojis
-						$text = $this->twitter_api_strip_emoji( $text );
+							// Now make the new array.
+							$tweets[] = array(
+								'text' => $text,
+								'name' => $name,
+								'permalink' => $permalink,
+								'image' => $image,
+								'time' => $uTime,
+								'tweet_id' => $tweet_id
+								);
+					endfor;
 
-						// Need to get time in Unix format.
-						$time = $tweet->created_at;
-						$time = date_parse($time);
-						$uTime = mktime($time['hour'], $time['minute'], $time['second'], $time['month'], $time['day'], $time['year']);
-
-						// Now make the new array.
-						$tweets[] = array(
-							'text' => $text,
-							'name' => $name,
-							'permalink' => $permalink,
-							'image' => $image,
-							'time' => $uTime,
-							'tweet_id' => $tweet_id
-							);
-				endfor;
-
-				set_transient($transName, $tweets, 60 * $cacheTime);
-				update_option($backupName, $tweets );
+					set_transient($transName, $tweets, 60 * $cacheTime);
+					update_option($backupName, $tweets );
 				endif;
 			endif;
 
