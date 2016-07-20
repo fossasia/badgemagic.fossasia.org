@@ -1,4 +1,5 @@
 === Plugin Name ===
+
 Contributors: Planet Interactive
 Donate: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A9437VN7R36VN
 Tags: Twitter, Stream, Tweets, Twitter OAuth, social
@@ -44,7 +45,7 @@ Installation is as simple as 1,2,3 or maybe 4 because of Twitter :)
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Add the Widget to your page (e.g. Sidebar) and update the required details
 4. Click Save
-5. Note: You will need to create a Twitter Application - See below. Oh, it's really easy.
+5. Note: You can either use Loklak API or you will need to create a Twitter Application - See below.
 
 = Creating a Twitter Application =
 
@@ -119,16 +120,43 @@ We've tested it and as far as we know it works great! Phew, but if you have an i
 == Screenshots ==
 
 1. Go to https://apps.twitter.com and Sign In
+
+	![Sign In](./img/screenshot-1.png)
+
 2. Create a new Application
+
+	![New Application](./img/screenshot-2.png)
+
 3. Fill a name for your App, a description (this is for you) and your website address (URL)
+
+	![App Name](./img/screenshot-3.png)
+
 4. Click "Create my access token"
+
+	![Access token](./img/screenshot-4.png)
+
 5. If you've already installed in the "Simple Twitter Tweets" plugin go to Appearance->Widgets (otherwise install it first then go here)
+
+	![Appearance->Widgets](./img/screenshot-5.png)
+
 6. Drag the "Simple Twitter Tweets" widget your widget area of choice
+
+	![Widget Area](./img/screenshot-6.png)
+
 7. Fill in the widget options and correlating Twitter Application OAuth requirements, just copy and paste
+
+	![OAuth](./img/screenshot-7.png)
+
 8. New options for "Twitter Follow Button" and what elements to display
+
+	![Follow Button](./img/screenshot-8.png)
+
 9. Style how you like, "Your Tweets your way"
 
+	![Style](./img/screenshot-9.png)
+
 == Changelog ==
+
 = 4.0 =
 * [Added] Multiple Widget ready - you can now use multiple versions in widget ready areas as requested
 * [Added] Internationalisation (i18n) - Ready for impending WP [theme and plugin] Language packs. All interface text marked up ready for translations
@@ -201,4 +229,5 @@ We've tested it and as far as we know it works great! Phew, but if you have an i
 == Upgrade Notice ==
 
 = 1.3.3 =
+
 Fixed retweets truncated links and more.
