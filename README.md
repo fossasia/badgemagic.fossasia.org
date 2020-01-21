@@ -2,12 +2,12 @@
 
 ## Download
 
-Google Playstore: https://play.google.com/store/apps/details?id=org.fossasia.badgemagic
+* [Google Playstore](https://play.google.com/store/apps/details?id=org.fossasia.badgemagic)
 
-Fdroid: https://f-droid.org/en/packages/org.fossasia.badgemagic/
+* [Fdroid](https://f-droid.org/en/packages/org.fossasia.badgemagic/)
 
-Python Desktop App: https://github.com/fossasia/led-name-badge-ls32
+* [Python Desktop App](https://github.com/fossasia/led-name-badge-ls32)
 
 ## Web
 
-Link: https://badgemagic.fossasia.org
+* [Visit the website here](https://badgemagic.fossasia.org)
