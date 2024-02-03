@@ -1,5 +1,9 @@
 # Badge Magic LED Badge
 
+**Magically Create Text and Draw Cliparts on LED Name Badges using Bluetooth**
+
+The Badge Magic Android app lets you create moving text and draw clipart for LED name badges. The app provides options to portray names, cliparts, and simple animations on the badges. For the org.fossasia.badgemagic.data transfer from the smartphone to the LED badge it uses Bluetooth.
+
 ## Android
 
 * [Google Playstore](https://play.google.com/store/apps/details?id=org.fossasia.badgemagic)
@@ -11,10 +15,11 @@
 
 ## How to transfer messages to the LED Badge
 
-1. Scan the QR code on the back of the LED badge to get to the website at badgemagic.fossasia.org. 
+1. Scan the QR code on the back of the LED badge to access the website. 
 2. Choose the right app for you and install it (Android, iOS, Python).
-3. Enable your mobile's Bluetooth. There is no need to pair it with the LED badge, as it pairs devices using Bluetooth Low Energy automatically.
-4. Open the app and enter your desired message.
+3. Enable your mobile's Bluetooth. There is no need to pair it with the LED badge, as devices using Bluetooth Low Energy pair automatically.
+4. Now open your app and enter your desired message.
+![badgemagic](/img/badgemagic-screen-1.jpg)
 5. Turn on the LED badge by pressing the top button on the side of the badge and press again to activate the Bluetooth transfer mode. It will show a Bluetooth image.
 6. Click transfer / send on the app to transmit the message.
 
