@@ -21,6 +21,7 @@ The Badge Magic Android app lets you create moving text and draw clipart for LED
 4. Now open your app and enter your desired message.
 <img src="/img/badgemagic-screen-1.jpg" alt="badge magic" width="500" height="auto">
 5. Turn on the LED badge by pressing the top button on the side of the badge and press again to activate the Bluetooth transfer mode. It will show a Bluetooth image.
+
 6. Click transfer / send on the app to transmit the message.
 
 ![badgemagic](/img/badgemagic.jpg)
