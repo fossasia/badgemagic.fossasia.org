@@ -18,14 +18,16 @@ The Badge Magic Android app lets you create moving text and draw clipart for LED
 
 * [App in iOS store](https://apps.apple.com/us/app/led-badge/id1461761458)
 
-## How to transfer messages to the LED Badge
+## How to switch on & off, transfer messages to the LED Badge
 
 1. Scan the QR code on the back of the LED badge to access the website. 
 2. Choose the right app for you and install it (Android, iOS, Python).
-3. Enable your mobile's Bluetooth. There is no need to pair it with the LED badge, as devices using Bluetooth Low Energy pair automatically.
-4. Now open your app and enter your desired message.
-5. Turn on the LED badge by pressing the top button on the side of the badge and press again to activate the Bluetooth transfer mode. It will show a Bluetooth image.
-6. Click transfer / send on the app to transmit the message.
+3. Turn on the LED Badge by pressing button as shown in the image.
+4. Enable your mobile's Bluetooth. There is no need to pair it with the LED badge, as devices using Bluetooth Low Energy pair automatically.
+5. Now open your app and enter your desired message.
+6. Turn on the LED badge by pressing the top button on the side of the badge and press again to activate the Bluetooth transfer mode. It will show a Bluetooth image.
+7. Click transfer / send on the app to transmit the message.
+8. To turn off, press the same button as shown in the image.
 
 ![badgemagic](/img/badgemagic.jpg)
 
