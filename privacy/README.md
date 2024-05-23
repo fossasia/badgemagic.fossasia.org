@@ -1,8 +1,8 @@
-**Privacy Policy for LED Badge Magic Android App**
+### Privacy Policy for LED Badge Magic Android App
 
-Last updated: 11 May 2024
+**Last updated: 11 May 2024**
 
-This privacy policy governs your use of the software application LED Badge Magic (“Application”) for mobile devices that was created by FOSSASIA. The Application is designed to allow users to create and transfer display messages to LED badges via Bluetooth.
+This privacy policy governs your use of the software application LED Badge Magic (“Application”) for mobile devices that was created by FOSSASIA. The Application is designed to allow users to create and transfer display messages to LED badges via Bluetooth Low Energy (BLE).
 
 **1. User Provided Information**
 
@@ -10,11 +10,11 @@ The Application does not require users to provide any personal information. User
 
 **2. Automatically Collected Information**
 
-In addition, the Application does not collect any information automatically from your device.
+The Application does not collect any information automatically from your device.
 
 **3. Does the Application collect precise real-time location information of the device?**
 
-This Application does not collect precise information about the location of your mobile device.
+The Application requires access to your device's precise location to find, connect to, and determine the relative position of nearby devices. This is necessary to transfer LED Badge text to devices the user connects to using Bluetooth Low Energy. However, this location data is not stored on the device, nor is it transferred to our servers or other devices.
 
 **4. Bluetooth Access**
 
@@ -42,9 +42,8 @@ This Privacy Policy may be updated from time to time for any reason. We will not
 
 **10. Your Consent**
 
-By using the Application, you are consenting to our processing of your information as set forth in this Privacy Policy now and as amended by us. "Processing,” means using Bluetooth on your device in the manner necessary to operate the Application as described above.
+By using the Application, you are consenting to our processing of your information as set forth in this Privacy Policy now and as amended by us. “Processing” means using Bluetooth on your device in the manner necessary to operate the Application as described above.
 
-**11. Contact us**
+**11. Contact Us**
 
 If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at dev@fossasia.org.
-
