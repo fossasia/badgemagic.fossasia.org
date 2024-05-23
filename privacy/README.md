@@ -53,7 +53,3 @@ By using the Application, you are consenting to our processing of your informati
 **11. Contact Us**
 
 If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at dev@fossasia.org.
-
----
-
-This updated privacy policy ensures compliance with Google Play Store policies regarding location permissions and provides clear information to users about the necessity and use of these permissions.
