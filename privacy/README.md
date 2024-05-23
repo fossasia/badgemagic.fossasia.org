@@ -12,9 +12,15 @@ The Application does not require users to provide any personal information. User
 
 The Application does not collect any information automatically from your device.
 
-**3. Does the Application collect precise real-time location information of the device?**
+**3. Location Permissions for Bluetooth Low Energy (BLE)**
 
-The Application requires access to your device's precise location to find, connect to, and determine the relative position of nearby devices. This is necessary to transfer LED Badge text to devices the user connects to using Bluetooth Low Energy. However, this location data is not stored on the device, nor is it transferred to our servers or other devices.
+The Application requires location permissions to operate Bluetooth Low Energy (BLE) functionalities effectively:
+
+- **Foreground Location Permission**: The Application needs access to your device's precise location while it is in use (foreground) to identify and connect to nearby devices. This permission is necessary to transfer badge data to the identified devices via BLE.
+
+- **Background Location Permission**: The Application requires access to your device's location in the background to continuously scan and identify nearby objects that can receive badge data. This ensures that the application can maintain connections and transfer data to devices even when the app is not actively in use.
+
+Location data accessed for BLE functionalities is not stored on the device, transferred to our servers, or shared with third parties. These permissions are solely used to facilitate the connection and data transfer between your device and nearby BLE devices.
 
 **4. Bluetooth Access**
 
@@ -47,3 +53,7 @@ By using the Application, you are consenting to our processing of your informati
 **11. Contact Us**
 
 If you have any questions regarding privacy while using the Application, or have questions about our practices, please contact us via email at dev@fossasia.org.
+
+---
+
+This updated privacy policy ensures compliance with Google Play Store policies regarding location permissions and provides clear information to users about the necessity and use of these permissions.
