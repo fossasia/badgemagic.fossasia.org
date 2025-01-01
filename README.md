@@ -33,12 +33,21 @@ The Badge Magic Android app lets you create moving text and draw clipart for LED
 
 Note: The second lower button on the badge is used to switch to different messages, currently available only on the iOS app. We plan to implement this function on the Android app in future.
 
+## Workshop
+
+* [Python Workshop (Google Doc)](https://docs.google.com/document/d/1Ax9lLDBA7hwRKgq2kBHhTh892YbRXS-ZGYeldZXPOwY/edit?tab=t.0)
+
 ## Development
 
-* [Android App Code](https://github.com/fossasia/badge-magic-android)
-* [iOS App Code](https://github.com/fossasia/badge-magic-iOS)
+* [Mobile App Code](https://github.com/fossasia/badgemagic-app): Flutter app for Android, iOS, Linux, macOS, and Windows
 * [Python App Code](https://github.com/fossasia/led-name-badge-ls32)
+* [Rust App Code](https://github.com/fossasia/badgemagic-rs)
 * [Badge Magic Firmware](https://github.com/fossasia/badgemagic-firmware)
+
+## Hardware
+
+* [Badge Magic Hardware](https://github.com/fossasia/badgemagic-hardware)
+* [Badge Magic Case](https://github.com/fossasia/badgemagic-case)
 
 ## Web
 
