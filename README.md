@@ -16,7 +16,7 @@ The Badge Magic Android app lets you create moving text and draw clipart for LED
 
 ## iOS
 
-* [App in iOS store](https://apps.apple.com/us/app/led-badge/id1461761458)
+* [Badge Magic App on Apple store](https://apps.apple.com/us/app/badge-magic/id6740176888)
 
 ## How to switch on & off, transfer messages to the LED Badge
 
