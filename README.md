@@ -78,6 +78,14 @@ The **second button** on the LED Badge serves multiple functions:
 * [Go App Code](https://github.com/fossasia/badgemagic-go)
 * [Badge Magic Firmware](https://github.com/fossasia/badgemagic-firmware)
 
+## Third Party Firmware
+
+The following third-party firmware is developed by the community.
+The authors of the software in this section are not affiliated with FOSSASIA.
+
+* [badgewitch](https://puck.moe/git/badgewitch): A firmware with an enhanced menu.
+* [rustbadge](https://git.chaostreffbern.ch/ceemos/rustbadge): Rust demo to showcase two-level shading support.
+
 ## Hardware
 
 * [Badge Magic Hardware](https://github.com/fossasia/badgemagic-hardware)
